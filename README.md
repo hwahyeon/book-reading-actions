@@ -49,5 +49,51 @@ The script will:
 - Not create an issue for "Chapter 2" since it is marked as completed.
 - Close the issue for "Chapter 2" if it is open.
 
-
-
+## Markdown Issue Tracker GitHub Action Flowchart
+```text
+Start (Push to Repository / Manual Trigger)
+          ↓
+Check for Markdown File Changes in 'books' Directory
+          ↓
+Changed Markdown Files Found?  ----→ No ----→ End
+          ↓
+          Yes
+          ↓
+Load Issues Data from 'issues.json'
+          ↓
+Issues File Exists?  ----→ No ----→ Initialize Issues Data
+          ↓
+          Yes
+          ↓
+For Each Changed Markdown File:
+          ↓
+Extract Book Title and Labels
+          ↓
+Extract Unchecked Chapters
+          ↓
+For Each Unchecked Chapter:
+          ↓
+Issue Already Exists in issues.json? ----→ Yes ----→ Skip
+          ↓
+          No
+          ↓
+Create Issue with Labels
+          ↓
+Add New Issue Number to issues.json
+          ↓
+Extract Checked Chapters
+          ↓
+For Each Checked Chapter:
+          ↓
+Issue Already Exists and Open? ----→ No ----→ Skip
+          ↓
+          Yes
+          ↓
+Close Issue
+          ↓
+Remove Issue from issues.json
+          ↓
+Save Updated issues.json
+          ↓
+End
+```
