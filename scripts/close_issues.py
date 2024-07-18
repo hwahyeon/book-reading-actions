@@ -37,6 +37,16 @@ def main():
                     if issue.state != 'closed':
                         issue.edit(state='closed')
                         print(f"Closed issue: {issue.title}")
+                        # Remove the closed issue from issues_data
+                        del issues_data[book_title][chapter]
+
+            # Clean up any empty book titles
+            if not issues_data[book_title]:
+                del issues_data[book_title]
+
+    with issues_file.open('w', encoding='utf-8') as f:
+        json.dump(issues_data, f, indent=4)
+    print(f"Updated issues data saved to {issues_file}")
 
 if __name__ == "__main__":
     main()
