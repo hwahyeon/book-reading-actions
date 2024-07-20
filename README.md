@@ -3,17 +3,13 @@ This repository contains a workflow script that automatically detects Markdown f
 
 
 ## Usage
-1. Place your Markdown files in the `/books/` directory. Each Markdown file should follow this structure:
 
-```markdown
-# Book Title
+1. Configure Actions Permissions:
+    1. Click on the `Settings` tab of the repository where you want to apply this workflow.
+    2. Click `Actions` under `Code and automation`.
+    3. Under `Actions permissions`, select `Allow all actions and reusable workflows`.
+    4. Under `Workflow permissions`, select `Read and write permissions`.
 
-**Labels:** label1, label2
-
-- [ ] Chapter 1
-- [ ] Chapter 2
-- [x] Chapter 3
-```
 2. Create a workflow file named `use-common-workflow.yml` in the `/.github/workflows` directory of your repository with the following content:
 ```yml
 name: Use Common Workflow
@@ -29,7 +25,23 @@ jobs:
     uses: hwahyeon/book-reading-actions/.github/workflows/common-workflow.yml@main
     secrets: inherit
 ```
-3. Once the workflow file is added to the repository, GitHub Actions will automatically run the script to scan the books folder, create issues for unchecked tasks, and close issues for checked tasks.
+
+
+3. Place your Markdown files in the `/books/` directory. Each Markdown file should follow this structure:
+
+```markdown
+# Book Title
+
+**Labels:** label1, label2
+
+- [ ] Chapter 1
+- [ ] Chapter 2
+- [x] Chapter 3
+```
+
+4. Once the workflow file is added to the repository and changes are committed, GitHub Actions will automatically run the script to scan the books folder, create issues for unchecked tasks, and close issues for checked tasks.
+
+5. Go to the `Actions` tab in your repository and ensure the workflow is enabled and configured correctly.
 
 ## Example
 Given a Markdown file named `example_book.md` in the `/books/` folder with the following content:
