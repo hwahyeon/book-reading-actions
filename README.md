@@ -2,6 +2,16 @@
 This repository contains a workflow script that automatically detects Markdown files in a specified folder, creates issues for each task listed, and closes issues as tasks are marked complete.
 
 
+## 🔴Important Notice
+The default GitHub Actions token (`GITHUB_TOKEN`) prevents new workflows from being triggered by actions it performs. This means that if you create or modify issues using `GITHUB_TOKEN`, other workflows will not detect and execute these actions. This is to prevent infinite loops and enhance security.
+
+**Example**
+1. **Workflow A**: Uses `GITHUB_TOKEN` to create a new issue.
+2. **Expected Trigger**: Normally, creating a new issue would trigger **Workflow B** to run.
+3. **Actual Result**: Issues created using `GITHUB_TOKEN` do not trigger **Workflow B**.
+
+Therefore, this repository is intended for situations where you cannot use a Personal Access Token. If you want full issue tracking functionality, please move to [this repository](https://github.com/hwahyeon/book-reading-actions-ptk), which is configured to use a Personal Access Token.
+
 ## Usage
 
 1. Configure Actions Permissions:
